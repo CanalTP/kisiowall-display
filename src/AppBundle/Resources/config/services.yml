@@ -1,0 +1,5 @@
+parameters:
+services:
+    kisiowall.caller.service:
+        class: AppBundle\Services\Caller
+        arguments:

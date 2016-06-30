@@ -13,9 +13,16 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
+        $reposNumber = $this->get('kisiowall.caller.service')->getReposNumber();
+        $responseTimes = $this->get('kisiowall.caller.service')->getAverageResponseTime();
+        $calls = $this->get('kisiowall.caller.service')->getNumberOfCalls();
+        $errors = $this->get('kisiowall.caller.service')->getNumberOfErrors();
+        $percent = ($errors / $calls) * 100;
         return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
+            'reposNumber' => $reposNumber,
+            'responseTimes' => json_encode($responseTimes),
+            'calls' => $calls,
+            'errorsPercent' => $percent,
         ]);
     }
 }
