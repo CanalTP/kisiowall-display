@@ -2,6 +2,8 @@ parameters:
 services:
     kisiowall.caller.service:
         class: AppBundle\Services\KisioApiCaller
+        arguments:
+          - @memcache.default
     github.caller.service:
         class: AppBundle\Services\GithubApiCaller
         arguments:

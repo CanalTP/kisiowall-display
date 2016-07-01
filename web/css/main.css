@@ -29,7 +29,20 @@ body {
     color: white;
     text-align: center;
     font-size: 128px;
+}
 
+.medium {
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    text-align: center;
+    font-size: 64px;
+}
+
+.middle {
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    text-align: center;
+    font-size: 90px;
 }
 
 .legende {
