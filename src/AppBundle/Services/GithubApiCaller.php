@@ -13,10 +13,6 @@ class GithubApiCaller
      */
     private $httpClient;
 
-//    private $authent = ['Authorization' => 'token 6e140d817faf23260eda1386423d97af8bd8d921'];
-//    private $authent = ['Authorization' => 'token 8d2502554ab117b88d8ed2f4f16a8f47111704ac'];
-    private $authent = ['Authorization' => 'token 85b8d3da6b9f7407e806941ac69e305086bca2f6']; //vchabot
-
     /**
      * @var MemcacheInterface
      */
@@ -25,8 +21,9 @@ class GithubApiCaller
     /**
      * Caller constructor.
      */
-    public function __construct(MemcacheInterface $memcache)
+    public function __construct(MemcacheInterface $memcache, $token)
     {
+        $this->authent = ['Authorization' => 'token ' . $token];
         $this->memcache = $memcache;
         $this->httpClient = new Client(
             'https://api.github.com'
@@ -65,22 +62,7 @@ class GithubApiCaller
             'nbRepos' => $nbRepos,
         ];
         $this->memcache->set(__METHOD__, $result, 0, 3600);
-        return $result;
-    }
 
-    public function getReposNumber()
-    {
-        try {
-            $repos = $this->httpClient->get('orgs/CanalTP/repos', $this->authent)->send();
-            preg_match('/^.+; rel="next", <https:\/\/api.github.com(.+)>; rel="last"$/', $repos->getHeader('Link'), $matches);
-            $last = $matches[1];
-            list(, $page) = explode('page=', $last);
-            $count = count($repos->json()) * ($page - 1);
-            $repos = $this->httpClient->get($last)->send();
-            $count += count($repos->json());
-        } catch (ClientErrorResponseException $e) {
-            $count = $e->getResponse()->getStatusCode();
-        }
-        return $count;
+        return $result;
     }
 }

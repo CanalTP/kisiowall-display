@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="http://www.yoan.eu/kisiowall/grid/css/bootstrap.min.css">
+    <title>The Final Count Down</title>
+    <link href="./The Final Count Down_files/style.css" rel="stylesheet" type="text/css">
+    <script src="./The Final Count Down_files/jquery.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}"/>
+</head>
+<body>
+<div class="container-fluid squares">
+    <div></div>
+
+    <div class="col-sm-4 height-3">
+        <div class="grids" style="background-color: #ea0828">
+            <h1>{{ reposStats.nbRepos }}</h1>
+            <p>Repositories on Github</p>
+        </div>
+    </div>
+
+    <div class="col-sm-4 height-3">
+        <div class="grids" style="background-color: #001e5a">
+            <h1>{{ reposStats.nbPulls.open }}</h1>
+            <p>Pull requests opened</p>
+        </div>
+    </div>
+
+    <div class="col-sm-4 height-3">
+        <div class="grids" style="background-color: #e75e71">
+            <h1>{{ nbCoffeeRealTime }}</h1>
+            <p>Today coffees</p>
+            <h1>0</h1>
+            <p>Boîte à bruits hits</p>
+        </div>
+    </div>
+
+    <div class="col-sm-4 height-3">
+        <div class="grids" style="background-color: #eb3750">
+            <h1>{{ occupiedRooms }}</h1>
+            <p>Current meetings</p>
+        </div>
+    </div>
+
+    <div class="col-sm-4 height-3">
+        <div class="grids" style="background-color: #001e5a">
+            <h1>{{ reposStats.nbPulls.open + reposStats.nbPulls.closed }}</h1>
+            <p>Pull requests of all time</p>
+        </div>
+    </div>
+
+    <div class="col-sm-4 height-3">
+        <div class="grids" style="background-color: #ea0828">
+            <h1>1614</h1>
+            <p>Daily Pascal Rhod hits</p>
+        </div>
+    </div>
+</div>
+<footer style="position: fixed; bottom: 0px; width: 100%; height: 60px; background-color: white;">
+    <img src="https://image-store.slidesharecdn.com/7b72319c-3630-4da3-91b7-2aaf57c997fe-large.png" width="130">
+    <div id="twitter_update_list">
+    </div>
+</footer>
+</body>
+</html>

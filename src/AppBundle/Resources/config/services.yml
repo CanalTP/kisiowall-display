@@ -8,5 +8,6 @@ services:
         class: AppBundle\Services\GithubApiCaller
         arguments:
           - @memcache.default
+          - %github_token%
     rooms.caller.service:
         class: AppBundle\Services\AvailableRoomsCaller
