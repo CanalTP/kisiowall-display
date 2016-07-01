@@ -72,12 +72,7 @@ class KisioApiCaller
             return $result;
         }
         else {
-            try {
-                $result = $this->httpClient->get('downloads_by_store')->send()->json();
-            }
-            catch(\Exception $e) {
-                $result = json_decode($e->getResponse()->json(), true);
-            }
+            $result = $this->httpClient->get('downloads_by_store')->send()->json();
             $this->memcache->set(__METHOD__, $result, 0, 3600);
             return $result;
         }
