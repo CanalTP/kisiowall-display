@@ -26,21 +26,15 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         $this->kisioWallApiService = $this->get('kisiowall.caller.service');
-        
-        
-        
-        //$responseTimes = $this->kisioWallApiService->getAverageResponseTime();
+
         $calls = $this->kisioWallApiService->getNumberOfCalls();
         $errors = $this->kisioWallApiService->getNumberOfErrors();
         $totalCalls = $this->kisioWallApiService->getTotalNavitiaCalls();
         $activeUsers = $this->kisioWallApiService->getActiveUsers();
         $downloads = $this->kisioWallApiService->getDownloadsByStore();
         
-        
-        
         $percent = (1 - $errors / $calls) * 100;
         return $this->render('default/index.html.twig', [
-            //'responseTimes' => json_encode($responseTimes),
             'calls' => $calls,
             'errorsPercent' => $percent,
             'totalCalls' => $totalCalls,
