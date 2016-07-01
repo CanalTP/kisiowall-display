@@ -41,6 +41,7 @@ class DefaultController extends Controller
         $errors = $this->kisioWallApiService->getNumberOfErrors();
         $totalCalls = $this->kisioWallApiService->getTotalNavitiaCalls();
         $activeUsers = $this->kisioWallApiService->getActiveUsers();
+        $downloads = $this->kisioWallApiService->getDownloadsByStore();
 
         $occupiedRooms = $this->get('rooms.caller.service')->getCurrentNbMeetings();
 
@@ -54,6 +55,7 @@ class DefaultController extends Controller
             'totalCalls' => $totalCalls,
             'activeUsers' => $activeUsers,
             'occupiedRooms' => $occupiedRooms,
+            'downloads' => $downloads,
         ]);
     }
 
@@ -66,7 +68,7 @@ class DefaultController extends Controller
         $reposStats = $this->githubApiService->getReposStats();
 
         return $this->render('default/tech.html.twig', [
-
+            'reposStats' => $reposStats
         ]);
     }
 }
