@@ -13,7 +13,9 @@ class GithubApiCaller
      */
     private $httpClient;
 
-    private $authent = ['Authorization' => 'token 6e140d817faf23260eda1386423d97af8bd8d921'];
+//    private $authent = ['Authorization' => 'token 6e140d817faf23260eda1386423d97af8bd8d921'];
+//    private $authent = ['Authorization' => 'token 8d2502554ab117b88d8ed2f4f16a8f47111704ac'];
+    private $authent = ['Authorization' => 'token 85b8d3da6b9f7407e806941ac69e305086bca2f6']; //vchabot
 
     /**
      * @var MemcacheInterface
@@ -28,47 +30,41 @@ class GithubApiCaller
         $this->memcache = $memcache;
         $this->httpClient = new Client(
             'https://api.github.com'
-//            ['headers' => ['Authorization' => 'token 6e140d817faf23260eda1386423d97af8bd8d921']]
         );
     }
 
     public function getReposStats()
     {
-        $result = $this->memcache->get('someKey');
-        if($result) {
-            var_dump($result);die;
+        $result = $this->memcache->get(__METHOD__);
+        if ($result) {
             return $result;
         }
-        $nbPulls = 0;
+        $nbPulls = [];
         $nbRepos = 0;
         $next = 'orgs/CanalTP/repos';
         do {
-//            var_dump($next);
             $response = $this->httpClient->get($next, $this->authent)->send();
             preg_match('/^<https:\/\/api.github.com(.+)>; rel="next", .+; rel="last"/', $response->getHeader('Link'), $matches);
-//            var_dump($matches);
             $repos = $response->json();
-            $nbRepos+=count($repos);
-            $next = !empty($matches[1]) ? $matches[1] :null;
-//            var_dump($next);
+            $nbRepos += count($repos);
+            $next = !empty($matches[1]) ? $matches[1] : null;
             foreach ($repos as $repo) {
-                $pullsUrl = 'repos/CanalTP/' . $repo['name'] . '/pulls';
-//                var_dump($pullsUrl);
+                $pullsUrl = 'repos/CanalTP/' . $repo['name'] . '/pulls?state=all';
                 $pulls = $this->httpClient->get($pullsUrl, $this->authent)->send()->json();
-//                var_dump($pulls);
-//                var_dump(count($pulls));
-                $nbPulls += count($pulls);
+                foreach ($pulls as $pr) {
+                    if (isset($nbPulls[$pr['state']])) {
+                        $nbPulls[$pr['state']]++;
+                    } else {
+                        $nbPulls[$pr['state']] = 1;
+                    }
+                }
             }
-//            var_dump($next);
-        }
-        while(!is_null($next));
+        } while (!is_null($next));
         $result = [
             'nbPulls' => $nbPulls,
             'nbRepos' => $nbRepos,
         ];
-        $this->memcache->set('getReposStats', $result, 0, 60);
-        echo 'fin';
-        var_dump($result);die;
+        $this->memcache->set(__METHOD__, $result, 0, 3600);
         return $result;
     }
 
