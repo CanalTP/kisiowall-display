@@ -10,31 +10,6 @@
          <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     	<style>
-    	   @font-face {
-              font-family: 'Montserrat';
-              font-style: normal;
-              font-weight: 400;
-              src: local('Montserrat-Regular'), url(https://fonts.gstatic.com/s/montserrat/v7/zhcz-_WihjSQC0oHJ9TCYPk_vArhqVIZ0nv9q090hN8.woff2) format('woff2');
-              unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-            }
-            
-            @font-face {
-              font-family: 'Oswald';
-              font-style: normal;
-              font-weight: 400;
-              src: local('Oswald Regular'), local('Oswald-Regular'), url(https://fonts.gstatic.com/s/oswald/v11/yg0glPPxXUISnKUejCX4qfesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
-              unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
-            }
-            
-            @font-face {
-              font-family: 'Oswald';
-              font-style: normal;
-              font-weight: 400;
-              src: local('Oswald Regular'), local('Oswald-Regular'), url(https://fonts.gstatic.com/s/oswald/v11/pEobIV_lL25TKBpqVI_a2w.woff2) format('woff2');
-              unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-            }
-            
-            
             .red{
               background :#e74c3c;
             }
@@ -50,7 +25,6 @@
             body{
               font-family: 'Oswald', sans-serif;
             }
-            @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
             .grids {
               height: 100%;
               width: 100%;
@@ -73,10 +47,10 @@
             .height-2 {
               height: calc(100vw / 12 * 2 - 45px); }
             
-            .height-2 {
+            .height-3 {
               height: calc(100vw / 12 * 3 - 45px); }
             
-            .height-2 {
+            .height-4 {
               height: calc(100vw / 12 * 4 - 45px); }
             
             .height-5 {
@@ -133,24 +107,26 @@
               color: white; }
             
             h1 {
-              font-size: 120px; }
+              font-size: 80px; }
             
             h2 {
-              font-size: 14px; }
+              font-size:30px; }
             
             p {
-              font-family: "Helvetica";
-              font-size: 12px;
+              font-family: "Oswald";
+              font-size: 50px;
               color: white; }
             
             .grids {
             
               
             .heading {
-              justify-content: flex-start; }
+              justify-content: flex-start;
+              }
               .heading h1 {
                 letter-spacing: 2px;
-                font-weight: 700; }
+                font-weight: 400;
+                }
             @media(max-width: 480px) {
               .heading h1 {
                 line-height: 5vh; } }
@@ -232,7 +208,8 @@
                 var options = {
                     height: 500,
                     title: 'Navitia response time',
-                    hAxis: {title: 'Time', titleTextStyle: {color: '#333'}},
+                    hAxis: {title: 'Time', ti
+                        height: 0px;tleTextStyle: {color: '#333'}},
                     vAxis: {minValue: responseTimes.min, maxValue: responseTimes.max}
                 };
 
@@ -243,72 +220,60 @@
     </script>
     <body>
         <div class="container-fluid squares">
-            <div class="col-sm-12 height-1">
-                <div class="grids heading">
-					<h1 style="font-color:#OOO; font-size:100px;">THE FINAL COUNT DOWN</h1>
-                </div>
-            </div>
+           <div></div>
 
-            <div class="col-sm-4 height-2">
+            <div class="col-sm-4 height-3">
                 <div class="grids red">
-					<h1>{{ calls | number_format(0, '.', ' ') }}</h1>
-					<p>Navitia Calls</p>
+					<h1>{{ activeUsers.value | number_format(0, '.', ' ') }}</h1>
+					<p>{{ activeUsers.name }}</p>
                 </div>
             </div>
 
-            <div class="col-sm-4 height-2">
+            <div class="col-sm-4 height-3">
                 <div class="grids blue">
-                	<h1>{{ errorsPercent | number_format(6, ',', '')}}</h1>
-                    <p>Navitia errors</p>
+                	<h1>{{ calls | number_format(0, '.', ' ') }}</h1>
+                    <p>Daily Navitia hits</p>
                 </div>
             </div>
             
-            <div class="col-sm-4 height-2">
+            <div class="col-sm-4 height-3">
                 <div class="grids blue">
                 	<h1>3000</h1>
                     <p></p>
                 </div>
             </div>
 
-            <div class="col-sm-4 height-2">
+            <div class="col-sm-4 height-3">
                 <div class="grids blue">
-                	<h1>{# {{ reposNumber }} #}</h1>
-                    <p>Public repositories on Github</p>
+                	<h1>{{ totalCalls | number_format(0, '.', ' ') }}</h1>
+                    <p>Total requests of all time</p>
                 </div>
             </div>
         
-        	<div class="col-sm-4 height-2">
+        	<div class="col-sm-4 height-3">
                 <div class="grids blue">
-                	<h1></h1>
-                    <p></p>
+                	<h1>{{ totalCalls | number_format(0, '.', ' ') }}</h1>
+                    <p>Total requests of all time</p>
                 </div>
             </div>
         
-        	<div class="col-sm-4 height-2">
+        	<div class="col-sm-4 height-3">
                 <div class="grids blue">
-                	<h1></h1>
-                    <p></p>
+                	<p>Today</p><br/>
+                	<div class="col-sm-6">
+                		<h1>{{ nbCoffeeRealTime }}</h1>
+                		<h2>Coffees</p>
+                	</div>
+                	<div class="col-sm-6">
+                		<h1>{{ occupiedRooms }}</h2>
+                    	<h2>Current meetings</h2>
+                	</div>
                 </div>
             </div>
-        
-        	<div class="col-sm-4 height-2">
-                <div class="grids blue">
-                	<h1></h1>
-                    <p></p>
-                </div>
-            </div>
-        
-        	<div class="col-sm-4 height-2">
-                <div class="grids blue">
-                	<h1></h1>
-                    <p></p>
-                </div>
-            </div>
-
         </div>
         <footer style="position: fixed; bottom: 0px; width: 100%; height: 60px; background-color: white;">
-            <img src="./The Final Count Down_files/7b72319c-3630-4da3-91b7-2aaf57c997fe-large.png" width="130"> 
-                <div id="twitter_update_list">
+            <img src="https://image-store.slidesharecdn.com/7b72319c-3630-4da3-91b7-2aaf57c997fe-large.png" width="130">
+    		<div id="twitter_update_list">
             </div>
         </footer>
     </body>
