@@ -3,142 +3,48 @@
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="10">
+    <meta http-equiv="refresh" content="30">
     <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+    {#<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />#}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <style>
-        h1 {
-            font-family: 'Oswald', sans-serif;
-            font-size: xx-large;
-            color: white;
-            text-align: center;
-        }
-
-        body {
-            background: #2E383B;
-        }
-
-        .red {
-            background: #e74c3c;
-
-        }
-
-        .green {
-            background: forestgreen;
-
-        }
-
-        .blue {
-            background: #3498db;
-            font-size: 128px;
-        }
-
-        .big {
-            font-family: 'Oswald', sans-serif;
-            color: white;
-            text-align: center;
-            font-size: 128px;
-
-        }
-
-        .legende {
-            font-size: 40px;
-            color: white;
-            text-align: center;
-
-        }
-
-        .mobile {
-            background-image: url(https://cdn1.iconfinder.com/data/icons/electronics-19/128/electronics_appliances_device-30-256.png);
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-
-        #chart_div {
-            height: 500px;
-        }
-    </style>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script>
-        $(document).ready(function () {
-//            $("#slideshow > div:gt(0)").hide();
-//
-//            setInterval(function () {
-//                $('#slideshow > div:first')
-//                        .fadeOut(2000)
-//                        .next()
-//                        .fadeIn(2000)
-//                        .end()
-//                        .appendTo('#slideshow');
-//            }, 10000);
-
-            var responseTimes = $('#chart_div').data('responsetime');
-//            $('.counter').each(function () {
-//                var $this = $(this),
-//                        countTo = $this.attr('data-count');
-//
-//                $({countNum: $this.text()}).animate({
-//                            countNum: countTo
-//                        },
-//
-//                        {
-//
-//                            duration: 8000,
-//                            easing: 'linear',
-//                            step: function () {
-//                                $this.text(Math.floor(this.countNum));
-//                            },
-//                            complete: function () {
-//                                $this.text(this.countNum);
-//                                //alert('finished');
-//                            }
-//
-//                        });
-//
-//            });
-            google.charts.load('current', {'packages': ['corechart']});
-            google.charts.setOnLoadCallback(function () {
-                var dataTable = [['Time', 'Response time']];
-                responseTimes = responseTimes["responseTimes"];
-                for (date in responseTimes) {
-                    dataTable.push([date, responseTimes[date]]);
-                }
-                console.dir(dataTable);
-
-                var data = google.visualization.arrayToDataTable(dataTable);
-
-                var options = {
-                    height: 500,
-                    title: 'Navitia response time',
-                    hAxis: {title: 'Time', titleTextStyle: {color: '#333'}},
-                    vAxis: {minValue: responseTimes.min, maxValue: responseTimes.max}
-                };
-
-                var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-                chart.draw(data, options);
-            });
-        });
-    </script>
+    <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
 </head>
 <body>
 <h1>The Final Count Down</h1>
 <div id="slideshow">
     <div class="pure-g">
+        {#<div class="pure-u-1-3 blue bloc"><p class="big"><span#}
+                        {#class="legende"> Navitia hits<br/></span>{{ calls | number_format(0, '.', ' ') }}</p>#}
+        {#</div>#}
         <div class="pure-u-1-3 blue bloc"><p class="big"><span
-                        class="legende"> Navitia calls: <br/></span>{{ calls | number_format(0, '.', ' ') }}</p>
+        class="legende">{{ activeUsers.name }}<br/></span>{{ activeUsers.value | number_format(0, '.', ' ') }}</p>
         </div>
-        <div class="pure-u-1-3 red bloc"><p class="big"><span class="legende"> Navitia errors: <br/></span>{{ errorsPercent | number_format(6, ',', '')}}  %
-            </p>
+        <div class="pure-u-1-3 green bloc"><p class="big"><span
+        class="legende">Daily Navitia hits<br/></span>{{ calls | number_format(0, '.', ' ') }}</p>
         </div>
         <div class="pure-u-1-3 blue bloc"><p class="big">3 000</p></div>
-        <div class="pure-u-1-3 green bloc"><p class="big"><span
-                        class="legende">Public repositories on Github: <br/></span>{# {{ reposNumber }} #}</p></div>
+        <div class="pure-u-1-3 green bloc"><p class="big"><span class="legende"> Navitia availability rate<br/></span>{{ errorsPercent | number_format(4, ',', '')}}  %
+            </p>
+        </div>
     {#</div>#}
     {#<div class="pure-g">#}
-        <div class="pure-u-1-3 bloc" id="chart_div" data-responsetime='{{ responseTimes }}'></div>
-        <div class="pure-u-1-3 green mobile counter"><p class="big">300 000 </p></div>
+        {#<div class="pure-u-1-3 bloc" id="chart_div" data-responsetime='{{ responseTimes }}'></div>#}
+        <div class="pure-u-1-3 blue bloc"><p class="big"><span
+                        class="legende">Total requests of all time<br/></span>{{ totalCalls | number_format(0, '.', ' ') }}</p>
+        </div>
+        <div class="pure-u-1-3 green bloc">
+            <p class="big"><span class="legende"> Number of today coffees<br/></span>{{ nbCoffeeRealTime }}
+            <p class="big"><span class="legende"> Current meetings<br/></span>{{ occupiedRooms }}</p>
+        </div>
         <br/>
     </div>
 </div>
+<footer class="footer">
+    <img src="https://image-store.slidesharecdn.com/7b72319c-3630-4da3-91b7-2aaf57c997fe-large.png" width="130">
+    <div id="twitter_update_list">
+    </div>
+</footer>
 </body>
 </html>
