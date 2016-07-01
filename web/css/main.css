@@ -1,0 +1,50 @@
+h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: xx-large;
+    color: white;
+    text-align: center;
+}
+
+body {
+    background: #2E383B;
+}
+
+.red {
+    background: #e74c3c;
+
+}
+
+.green {
+    background: forestgreen;
+
+}
+
+.blue {
+    background: #3498db;
+    font-size: 128px;
+}
+
+.big {
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    text-align: center;
+    font-size: 128px;
+
+}
+
+.legende {
+    font-size: 40px;
+    color: white;
+    text-align: center;
+
+}
+
+.mobile {
+    background-image: url(https://cdn1.iconfinder.com/data/icons/electronics-19/128/electronics_appliances_device-30-256.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#chart_div {
+    height: 500px;
+}
