@@ -238,15 +238,18 @@
             
             <div class="col-sm-4 height-3">
                 <div class="grids blue">
-                	<h1>3000</h1>
-                    <p></p>
+                	<p>Downloads:</p><br/>
+                	<h1>{{ downloads.ios_store | number_format(0, '.', ' ') }}</h1>
+                	<h2>on IOS</h2><br/>
+                	<h1>{{ downloads.google_play | number_format(0, '.', ' ') }}</h1>
+                	<h2>on Android</h2>
                 </div>
             </div>
 
             <div class="col-sm-4 height-3">
                 <div class="grids blue">
-                	<h1>{{ totalCalls | number_format(0, '.', ' ') }}</h1>
-                    <p>Total requests of all time</p>
+                	<h1>{{ errorsPercent | number_format(4, ',', '') }}</h1>
+                    <p>Navitia availability rate</p>
                 </div>
             </div>
         
@@ -259,15 +262,11 @@
         
         	<div class="col-sm-4 height-3">
                 <div class="grids blue">
-                	<p>Today</p><br/>
-                	<div class="col-sm-6">
-                		<h1>{{ nbCoffeeRealTime }}</h1>
-                		<h2>Coffees</p>
-                	</div>
-                	<div class="col-sm-6">
-                		<h1>{{ occupiedRooms }}</h2>
-                    	<h2>Current meetings</h2>
-                	</div>
+                	<p>Today:</p><br/>
+            		<h1>{{ nbCoffeeRealTime }}</h1>
+            		<h2>Coffees</h2><br/>
+            		<h1>{{ occupiedRooms }}</h1>
+            		<h2>Current meetings</h2>
                 </div>
             </div>
         </div>
