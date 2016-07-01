@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <link rel="stylesheet" href="http://www.yoan.eu/kisiowall/grid/css/bootstrap.min.css">
+        <title>The Final Count Down</title>
+        <link href="./The Final Count Down_files/style.css" rel="stylesheet" type="text/css">
+        <script src="./The Final Count Down_files/jquery.min.js"></script>
+         <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    	<style>
+    	   @font-face {
+              font-family: 'Montserrat';
+              font-style: normal;
+              font-weight: 400;
+              src: local('Montserrat-Regular'), url(https://fonts.gstatic.com/s/montserrat/v7/zhcz-_WihjSQC0oHJ9TCYPk_vArhqVIZ0nv9q090hN8.woff2) format('woff2');
+              unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+            }
+            
+            @font-face {
+              font-family: 'Oswald';
+              font-style: normal;
+              font-weight: 400;
+              src: local('Oswald Regular'), local('Oswald-Regular'), url(https://fonts.gstatic.com/s/oswald/v11/yg0glPPxXUISnKUejCX4qfesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
+              unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+            }
+            
+            @font-face {
+              font-family: 'Oswald';
+              font-style: normal;
+              font-weight: 400;
+              src: local('Oswald Regular'), local('Oswald-Regular'), url(https://fonts.gstatic.com/s/oswald/v11/pEobIV_lL25TKBpqVI_a2w.woff2) format('woff2');
+              unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+            }
+            
+            
+            .red{
+              background :#e74c3c;
+            }
+            .blue{
+              background :#3498db;
+            }
+            .gris{
+              background:#bdc3c7;
+            }
+            .white{
+              background:white
+            }
+            body{
+              font-family: 'Oswald', sans-serif;
+            }
+            @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+            .grids {
+              height: 100%;
+              width: 100%;
+              display: flex; /* contexte sur le parent */
+              flex-direction: column; /* direction d'affichage verticale */
+              justify-content: center; /* alignement vertical */
+              align-items: center;
+              justify-content: center;
+              padding-left: 15px;
+              padding-right: 15px;
+              text-align:center;
+            }
+            @media(max-width: 480px) {
+              .grids {
+                padding-top: 15px;
+                padding-bottom: 15px; } }
+            .height-1 {
+              height: calc(100vw / 12 * 1 - 45px); }
+            
+            .height-2 {
+              height: calc(100vw / 12 * 2 - 45px); }
+            
+            .height-2 {
+              height: calc(100vw / 12 * 3 - 45px); }
+            
+            .height-2 {
+              height: calc(100vw / 12 * 4 - 45px); }
+            
+            .height-5 {
+              height: calc(100vw / 12 * 5 - 45px); }
+            
+            .height-6 {
+              height: calc(100vw / 12 * 6 - 45px); }
+            
+            .height-7 {
+              height: calc(100vw / 12 * 7 - 45px); }
+            
+            .height-8 {
+              height: calc(100vw / 12 * 8 - 45px); }
+            
+            .height-9 {
+              height: calc(100vw / 12 * 9 - 45px); }
+            
+            .height-10 {
+              height: calc(100vw / 12 * 10 - 45px); }
+            
+            .height-11 {
+              height: calc(100vw / 12 * 11 - 45px); }
+            
+            .height-12 {
+              height: calc(100vw - 45px); }
+            
+            .squares {
+              padding-bottom: 30px; }
+            
+            .squares > div {
+              margin-top: 30px; }
+              .squares > div:first-child {
+                margin-top: 0; }
+            @media(max-width: 480px) {
+              .squares > div {
+                height: auto; } }
+            .squares > div > div {
+              margin-top: 30px; }
+            @media(max-width: 480px) {
+              .squares > div > div {
+                height: auto; } }
+            .no-pad {
+              padding-left: 0;
+              padding-right: 0; }
+            
+            body, html, h1, h2, h3, h4, h5, p {
+              margin: 0; }
+            
+            body {
+              background: #2E383B; }
+            
+            h1, h2 {
+              font-family: "Oswald";
+              color: white; }
+            
+            h1 {
+              font-size: 120px; }
+            
+            h2 {
+              font-size: 14px; }
+            
+            p {
+              font-family: "Helvetica";
+              font-size: 12px;
+              color: white; }
+            
+            .grids {
+            
+              
+            .heading {
+              justify-content: flex-start; }
+              .heading h1 {
+                letter-spacing: 2px;
+                font-weight: 700; }
+            @media(max-width: 480px) {
+              .heading h1 {
+                line-height: 5vh; } }
+            .bottom {
+              margin-bottom: 30px; }
+            
+            .download div {
+              transition: all 1s ease; }
+            /*.download:hover div {
+              background: #3498db; }
+              .download:hover div h1 {
+                color: white; */}
+                big{
+              font-family: 'Oswald', sans-serif;
+              color:white;
+              text-align: center;
+              font-size:128px;
+            }
+            
+            
+            .mobile{
+            
+              background-image: url(https://cdn1.iconfinder.com/data/icons/electronics-19/128/electronics_appliances_device-30-256.png);
+              background-repeat: no-repeat;
+              background-position: center;
+            }
+    	
+    	</style>
+    </head>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    	<script>
+        $(document).ready(function () {
+//            $("#slideshow > div:gt(0)").hide();
+//
+//            setInterval(function () {
+//                $('#slideshow > div:first')
+//                        .fadeOut(2000)
+//                        .next()
+//                        .fadeIn(2000)
+//                        .end()
+//                        .appendTo('#slideshow');
+//            }, 10000);
+
+            var responseTimes = $('#chart_div').data('responsetime');
+//            $('.counter').each(function () {
+//                var $this = $(this),
+//                        countTo = $this.attr('data-count');
+//
+//                $({countNum: $this.text()}).animate({
+//                            countNum: countTo
+//                        },
+//
+//                        {
+//
+//                            duration: 8000,
+//                            easing: 'linear',
+//                            step: function () {
+//                                $this.text(Math.floor(this.countNum));
+//                            },
+//                            complete: function () {
+//                                $this.text(this.countNum);
+//                                //alert('finished');
+//                            }
+//
+//                        });
+//
+//            });
+            google.charts.load('current', {'packages': ['corechart']});
+            google.charts.setOnLoadCallback(function () {
+                var dataTable = [['Time', 'Response time']];
+                responseTimes = responseTimes["responseTimes"];
+                for (date in responseTimes) {
+                    dataTable.push([date, responseTimes[date]]);
+                }
+                console.dir(dataTable);
+
+                var data = google.visualization.arrayToDataTable(dataTable);
+
+                var options = {
+                    height: 500,
+                    title: 'Navitia response time',
+                    hAxis: {title: 'Time', titleTextStyle: {color: '#333'}},
+                    vAxis: {minValue: responseTimes.min, maxValue: responseTimes.max}
+                };
+
+                var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
+            });
+        });
+    </script>
+    <body>
+        <div class="container-fluid squares">
+            <div class="col-sm-12 height-1">
+                <div class="grids heading">
+					<h1 style="font-color:#OOO; font-size:100px;">THE FINAL COUNT DOWN</h1>
+                </div>
+            </div>
+
+            <div class="col-sm-4 height-2">
+                <div class="grids red">
+					<h1>{{ calls | number_format(0, '.', ' ') }}</h1>
+					<p>Navitia Calls</p>
+                </div>
+            </div>
+
+            <div class="col-sm-4 height-2">
+                <div class="grids blue">
+                	<h1>{{ errorsPercent | number_format(6, ',', '')}}</h1>
+                    <p>Navitia errors</p>
+                </div>
+            </div>
+            
+            <div class="col-sm-4 height-2">
+                <div class="grids blue">
+                	<h1>3000</h1>
+                    <p></p>
+                </div>
+            </div>
+
+            <div class="col-sm-4 height-2">
+                <div class="grids blue">
+                	<h1>{# {{ reposNumber }} #}</h1>
+                    <p>Public repositories on Github</p>
+                </div>
+            </div>
+        
+        	<div class="col-sm-4 height-2">
+                <div class="grids blue">
+                	<h1></h1>
+                    <p></p>
+                </div>
+            </div>
+        
+        	<div class="col-sm-4 height-2">
+                <div class="grids blue">
+                	<h1></h1>
+                    <p></p>
+                </div>
+            </div>
+        
+        	<div class="col-sm-4 height-2">
+                <div class="grids blue">
+                	<h1></h1>
+                    <p></p>
+                </div>
+            </div>
+        
+        	<div class="col-sm-4 height-2">
+                <div class="grids blue">
+                	<h1></h1>
+                    <p></p>
+                </div>
+            </div>
+
+        </div>
+        <footer style="position: fixed; bottom: 0px; width: 100%; height: 60px; background-color: white;">
+            <img src="./The Final Count Down_files/7b72319c-3630-4da3-91b7-2aaf57c997fe-large.png" width="130"> 
+                <div id="twitter_update_list">
+            </div>
+        </footer>
+    </body>
+</html>
