@@ -16,6 +16,8 @@ parameters:
     mailer_password:   ~
     memcache_server:   localhost
     github_token: ~
+    twitter_key: ~
+    twitter_secret: ~
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt

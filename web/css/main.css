@@ -107,7 +107,7 @@ p {
 
 .grids {
 
-  
+
 .heading {
   justify-content: flex-start;
   }
@@ -140,4 +140,25 @@ p {
   background-image: url(https://cdn1.iconfinder.com/data/icons/electronics-19/128/electronics_appliances_device-30-256.png);
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.slideshow {
+  width: 1500px;
+  height: 60px;
+  overflow: hidden;
+}
+
+.slideshow ul {
+  /* 20 Tweets donc 20 x 100% */
+  width: 2000%;
+  height: 200px;
+  padding:0; margin:0;
+  list-style: none;
+}
+.slideshow li {
+  padding-top: 17px;
+  float: left;
+  height:50px;
+  font-size:20px;
+  margin-left:500px;
 }

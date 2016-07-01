@@ -25,6 +25,8 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $tweets = $this->get('kisiowall.caller.service')->getTwitter();
+
         $this->kisioWallApiService = $this->get('kisiowall.caller.service');
 
         $calls = $this->kisioWallApiService->getNumberOfCalls();
@@ -32,7 +34,9 @@ class DefaultController extends Controller
         $totalCalls = $this->kisioWallApiService->getTotalNavitiaCalls();
         $activeUsers = $this->kisioWallApiService->getActiveUsers();
         $downloads = $this->kisioWallApiService->getDownloadsByStore();
-        
+        $dataUpdate = $this->kisioWallApiService->getDataUpdate();
+        $regions = $this->kisioWallApiService->getTotalRegions();
+
         $percent = (1 - $errors / $calls) * 100;
         return $this->render('default/index.html.twig', [
             'calls' => $calls,
@@ -40,6 +44,9 @@ class DefaultController extends Controller
             'totalCalls' => $totalCalls,
             'activeUsers' => $activeUsers,
             'downloads' => $downloads,
+            'dataUpdate' => $dataUpdate,
+            'regions' => $regions,
+            'tweets' => $tweets,
         ]);
     }
         
@@ -48,6 +55,7 @@ class DefaultController extends Controller
      */
     public function techAction(Request $request)
     {
+        $tweets = $this->get('kisiowall.caller.service')->getTwitter();
         $now = new \DateTime();
         $beginHours = 8;
         $dayInHours = 10;
@@ -66,6 +74,7 @@ class DefaultController extends Controller
             'nbCoffeeRealTime' => $nbCoffeeRealTime,
             'reposStats' => $reposStats,
             'nbPascalHits' => $nbPascalHits,
+            'tweets' => $tweets,
         ]);
     }
 
