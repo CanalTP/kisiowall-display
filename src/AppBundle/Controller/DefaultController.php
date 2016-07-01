@@ -44,7 +44,7 @@ class DefaultController extends Controller
             'calls' => $calls,
             'errorsPercent' => $percent,
             'totalCalls' => $totalCalls,
-            'activeUsers' => $activeUsers,            
+            'activeUsers' => $activeUsers,
             'downloads' => $downloads,
         ]);
     }
