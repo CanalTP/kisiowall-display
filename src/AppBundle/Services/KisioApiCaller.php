@@ -3,6 +3,7 @@
 namespace AppBundle\Services;
 
 use Guzzle\Http\Client;
+use Guzzle\Http\Exception\ServerErrorResponseException;
 use Lsw\MemcacheBundle\Cache\MemcacheInterface;
 
 class KisioApiCaller
@@ -66,17 +67,32 @@ class KisioApiCaller
 
     public function getActiveUsers()
     {
-        return $this->httpClient->get('active_users')->send()->json();
+        try {
+            return $this->httpClient->get('active_users')->send()->json();
+        }
+        catch (ServerErrorResponseException $exception) {
+            return 'N/A';
+        }
     }
 
     public function getTotalRegions()
     {
-        return $this->httpClient->get('total_regions')->send()->json();
+        try {
+            return $this->httpClient->get('total_regions')->send()->json();
+        }
+        catch (ServerErrorResponseException $exception) {
+            return 'N/A';
+        }
     }
 
     public function getDataUpdate()
     {
-        return $this->httpClient->get('weekly_data_update')->send()->json();
+        try {
+            return $this->httpClient->get('weekly_data_update')->send()->json();
+        }
+        catch (ServerErrorResponseException $exception) {
+            return 'N/A';
+        }
     }
 
     public function getDownloadsByStore()

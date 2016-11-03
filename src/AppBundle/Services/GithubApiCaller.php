@@ -47,13 +47,18 @@ class GithubApiCaller
             $next = !empty($matches[1]) ? $matches[1] : null;
             foreach ($repos as $repo) {
                 $pullsUrl = 'repos/CanalTP/' . $repo['name'] . '/pulls?state=all';
-                $pulls = $this->httpClient->get($pullsUrl, $this->authent)->send()->json();
-                foreach ($pulls as $pr) {
-                    if (isset($nbPulls[$pr['state']])) {
-                        $nbPulls[$pr['state']]++;
-                    } else {
-                        $nbPulls[$pr['state']] = 1;
+                try {
+                    $pulls = $this->httpClient->get($pullsUrl, $this->authent)->send()->json();
+                    foreach ($pulls as $pr) {
+                        if (isset($nbPulls[$pr['state']])) {
+                            $nbPulls[$pr['state']]++;
+                        } else {
+                            $nbPulls[$pr['state']] = 1;
+                        }
                     }
+                }
+                catch (ClientErrorResponseException $exception) {
+
                 }
             }
         } while (!is_null($next));
