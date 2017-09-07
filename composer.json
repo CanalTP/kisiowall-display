@@ -22,7 +22,6 @@
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "~2.0",
         "guzzle/guzzle": "^3.9",
-        "leaseweb/memcache-bundle": "^2.1",
         "j7mbo/twitter-api-php": "dev-master"
     },
     "require-dev": {

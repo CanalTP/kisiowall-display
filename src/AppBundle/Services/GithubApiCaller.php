@@ -4,7 +4,6 @@ namespace AppBundle\Services;
 
 use Guzzle\Http\Client;
 use Guzzle\Http\Exception\ClientErrorResponseException;
-use Lsw\MemcacheBundle\Cache\MemcacheInterface;
 
 class GithubApiCaller
 {
@@ -14,17 +13,11 @@ class GithubApiCaller
     private $httpClient;
 
     /**
-     * @var MemcacheInterface
-     */
-    private $memcache;
-
-    /**
      * Caller constructor.
      */
-    public function __construct(MemcacheInterface $memcache, $token)
+    public function __construct($token)
     {
         $this->authent = ['Authorization' => 'token ' . $token];
-        $this->memcache = $memcache;
         $this->httpClient = new Client(
             'https://api.github.com'
         );
@@ -32,10 +25,6 @@ class GithubApiCaller
 
     public function getReposStats()
     {
-        $result = $this->memcache->get(__METHOD__);
-        if ($result) {
-            return $result;
-        }
         $nbPulls = [];
         $nbRepos = 0;
         $next = 'orgs/CanalTP/repos';
@@ -66,7 +55,6 @@ class GithubApiCaller
             'nbPulls' => $nbPulls,
             'nbRepos' => $nbRepos,
         ];
-        $this->memcache->set(__METHOD__, $result, 0, 3600);
 
         return $result;
     }

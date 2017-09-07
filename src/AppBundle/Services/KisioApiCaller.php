@@ -4,7 +4,6 @@ namespace AppBundle\Services;
 
 use Guzzle\Http\Client;
 use Guzzle\Http\Exception\ServerErrorResponseException;
-use Lsw\MemcacheBundle\Cache\MemcacheInterface;
 
 class KisioApiCaller
 {
@@ -13,19 +12,11 @@ class KisioApiCaller
      */
     private $httpClient;
 
-    /**
-     * @var MemcacheInterface
-     */
-    private $memcache;
     private $twitterKey;
     private $twitterSecret;
 
-    /**
-     * @param MemcacheInterface $memcache
-     */
-    public function __construct(MemcacheInterface $memcache, $twitterKey, $twitterSecret)
+    public function __construct($twitterKey, $twitterSecret)
     {
-        $this->memcache = $memcache;
         $this->twitterKey = $twitterKey;
         $this->twitterSecret = $twitterSecret;
         $this->httpClient = new Client('http://par-vm191.srv.canaltp.fr/kisiowall-api');
@@ -69,8 +60,7 @@ class KisioApiCaller
     {
         try {
             return $this->httpClient->get('active_users')->send()->json();
-        }
-        catch (ServerErrorResponseException $exception) {
+        } catch (ServerErrorResponseException $exception) {
             return 'N/A';
         }
     }
@@ -79,8 +69,7 @@ class KisioApiCaller
     {
         try {
             return $this->httpClient->get('total_regions')->send()->json();
-        }
-        catch (ServerErrorResponseException $exception) {
+        } catch (ServerErrorResponseException $exception) {
             return 'N/A';
         }
     }
@@ -89,23 +78,15 @@ class KisioApiCaller
     {
         try {
             return $this->httpClient->get('weekly_data_update')->send()->json();
-        }
-        catch (ServerErrorResponseException $exception) {
+        } catch (ServerErrorResponseException $exception) {
             return 'N/A';
         }
     }
 
     public function getDownloadsByStore()
     {
-        $result = $this->memcache->get(__METHOD__);
-        if ($result) {
-            return $result;
-        }
-        else {
-            $result = $this->httpClient->get('downloads_by_store')->send()->json();
-            $this->memcache->set(__METHOD__, $result, 0, 3600);
-            return $result;
-        }
+        $result = $this->httpClient->get('downloads_by_store')->send()->json();
+        return $result;
     }
 
     public function getTwitter()

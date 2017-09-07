@@ -3,13 +3,11 @@ services:
     kisiowall.caller.service:
         class: AppBundle\Services\KisioApiCaller
         arguments:
-          - @memcache.default
           - %twitter_key%
           - %twitter_secret%
     github.caller.service:
         class: AppBundle\Services\GithubApiCaller
         arguments:
-          - @memcache.default
           - %github_token%
     rooms.caller.service:
         class: AppBundle\Services\AvailableRoomsCaller

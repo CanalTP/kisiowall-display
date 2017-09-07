@@ -24,6 +24,6 @@ class AvailableRoomsCaller
 
     public function getCurrentNbMeetings()
     {
-        return $this->httpClient->get('booking/rooms/occupied_count')->send()->json();
+        return $this->httpClient->get('booking/rooms/occupied_count')->send()->json() ;
     }
 }
